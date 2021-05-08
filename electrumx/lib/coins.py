@@ -3990,3 +3990,43 @@ class Syscoin(AuxPowMixin, Coin):
     RPC_PORT = 8370
     REORG_LIMIT = 2000
     CHUNK_SIZE = 360
+
+class Sapphire(Coin):
+    NAME = "Sapphire"
+    SHORTNAME = "SAPP"
+    NET = "mainnet"
+    XPUB_VERBYTES = bytes.fromhex("022D2563")
+    XPRV_VERBYTES = bytes.fromhex("0221312B")
+    GENESIS_HASH = '00000eef0583695d6da23a78bab1c39939bbb54cf9bd5f0d4881c8eef364cd26'
+    P2PKH_VERBYTE = bytes.fromhex("3f")
+    P2SH_VERBYTE = bytes.fromhex("12")
+    WIF_BYTE = bytes.fromhex("19")
+    DESERIALIZER = lib_tx.DeserializerPIVX
+    TX_COUNT_HEIGHT = 1
+    TX_COUNT = 1
+    TX_PER_BLOCK = 1
+    STATIC_BLOCK_HEADERS = False
+    RPC_PORT = 51470
+    REORG_LIMIT = 100
+    EXPANDED_HEADER = 112
+    ZEROCOIN_START_HEIGHT = 574200
+    ZEROCOIN_END_HEIGHT = 574600
+    ZEROCOIN_BLOCK_VERSION = 4
+
+    @classmethod
+    def static_header_len(cls, height):
+        '''Given a header height return its length.'''
+        if (height >= cls.ZEROCOIN_START_HEIGHT and height < cls.ZEROCOIN_END_HEIGHT):
+            return cls.EXPANDED_HEADER
+        else:
+            return cls.BASIC_HEADER_SIZE
+
+    @classmethod
+    def header_hash(cls, header):
+        '''Given a header return the hash.'''
+        version, = struct.unpack('<I', header[:4])
+        if version >= cls.ZEROCOIN_BLOCK_VERSION:
+            return super().header_hash(header)
+        else:
+            import quark_hash
+            return quark_hash.getPoWHash(header)
