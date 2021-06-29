@@ -4031,3 +4031,45 @@ class Sapphire(Coin):
             return super().header_hash(header)
         else:
             return quark_hash.getPoWHash(header)
+
+class Jackpot(Coin):
+    NAME = "Jackpot"
+    SHORTNAME = "777"
+    NET = "mainnet"
+    XPUB_VERBYTES = bytes.fromhex("022D2573")
+    XPRV_VERBYTES = bytes.fromhex("0221312B")
+    GENESIS_HASH = '00000366a6d89ece72f3481f4c81e813f17c4512d2cce519c9d869d8eaebf71d'
+    P2PKH_VERBYTE = bytes.fromhex("0f")
+    P2SH_VERBYTE = bytes.fromhex("10")
+    WIF_BYTE = bytes.fromhex("2b")
+    DESERIALIZER = lib_tx.DeserializerPIVX
+    TX_COUNT_HEIGHT = 1
+    TX_COUNT = 1
+    TX_PER_BLOCK = 1
+    STATIC_BLOCK_HEADERS = False
+    RPC_PORT = 27772
+    REORG_LIMIT = 100
+    EXPANDED_HEADER = 112
+    ZEROCOIN_START_HEIGHT = 574200
+    ZEROCOIN_END_HEIGHT = 574600
+    ZEROCOIN_BLOCK_VERSION = 4
+
+    @classmethod
+    def static_header_len(cls, height):
+        '''Given a header height return its length.'''
+        if (height >= cls.ZEROCOIN_START_HEIGHT and height < cls.ZEROCOIN_END_HEIGHT):
+            return cls.EXPANDED_HEADER
+        else:
+            return cls.BASIC_HEADER_SIZE
+
+    @classmethod
+    def header_hash(cls, header):
+        version, = util.unpack_le_uint32_from(header)
+
+        import xevan_hash
+
+        if version == 1:
+            return xevan_hash.getPoWHash(header[:80])
+        else:
+            return xevan_hash.getPoWHash(header)
+
