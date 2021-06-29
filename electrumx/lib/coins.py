@@ -50,6 +50,7 @@ import electrumx.server.block_processor as block_proc
 import electrumx.server.daemon as daemon
 from electrumx.server.session import (ElectrumX, DashElectrumX,
                                       SmartCashElectrumX, AuxPoWElectrumX)
+import quark_hash
 
 
 @dataclass
@@ -4009,24 +4010,24 @@ class Sapphire(Coin):
     RPC_PORT = 51470
     REORG_LIMIT = 100
     EXPANDED_HEADER = 112
-    ZEROCOIN_START_HEIGHT = 574200
-    ZEROCOIN_END_HEIGHT = 574600
-    ZEROCOIN_BLOCK_VERSION = 4
+    ZEROCOIN_START_VERSION = 4
+    ZEROCOIN_END_VERSION = 7
+    DSHA256_BLOCK_VERSION = 4
 
     @classmethod
-    def static_header_len(cls, height):
-        '''Given a header height return its length.'''
-        if (height >= cls.ZEROCOIN_START_HEIGHT and height < cls.ZEROCOIN_END_HEIGHT):
-            return cls.EXPANDED_HEADER
+    def block_header(cls, block, height):
+        '''Returns the block header given a block and its version.'''
+        version, = struct.unpack('<I', block[:4])
+        if (version >= cls.ZEROCOIN_START_VERSION and height < cls.ZEROCOIN_END_VERSION):
+            return block[:cls.EXPANDED_HEADER]
         else:
-            return cls.BASIC_HEADER_SIZE
+            return block[:cls.BASIC_HEADER_SIZE]
 
     @classmethod
     def header_hash(cls, header):
         '''Given a header return the hash.'''
         version, = struct.unpack('<I', header[:4])
-        if version >= cls.ZEROCOIN_BLOCK_VERSION:
+        if version >= cls.DSHA256_BLOCK_VERSION:
             return super().header_hash(header)
         else:
-            import quark_hash
             return quark_hash.getPoWHash(header)
