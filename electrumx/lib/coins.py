@@ -4018,7 +4018,7 @@ class Sapphire(Coin):
     def block_header(cls, block, height):
         '''Returns the block header given a block and its version.'''
         version, = struct.unpack('<I', block[:4])
-        if (version >= cls.ZEROCOIN_START_VERSION and height < cls.ZEROCOIN_END_VERSION):
+        if (version >= cls.ZEROCOIN_START_VERSION and version < cls.ZEROCOIN_END_VERSION):
             return block[:cls.EXPANDED_HEADER]
         else:
             return block[:cls.BASIC_HEADER_SIZE]
