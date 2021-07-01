@@ -4047,3 +4047,15 @@ class Jackpot(Sapphire, Coin):
     def header_hash(cls, header):
         return xevan_hash.getPoWHash(header)
 
+class CryptoFlow(Sapphire, Coin):
+    NAME = "CryptoFlow"
+    SHORTNAME = "CFL"
+    XPUB_VERBYTES = bytes.fromhex("022D2533")
+    XPRV_VERBYTES = bytes.fromhex("0221312B")
+    GENESIS_HASH = '000004024ce90ca90b3d840e8561944882d31a35ee9700fdc4a4187f0e25bcb3'
+    P2PKH_VERBYTE = bytes.fromhex("57")
+    P2SH_VERBYTE = bytes.fromhex("5f")
+    WIF_BYTE = bytes.fromhex("66")
+    RPC_PORT = 13334
+
+
