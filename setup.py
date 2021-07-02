@@ -8,7 +8,8 @@ setuptools.setup(
     python_requires='>=3.7',
     install_requires=['aiorpcX[ws]>=0.18.5,<0.19', 'attrs',
                       'plyvel', 'pylru', 'aiohttp>=3.3,<4', 
-                      'quark_hash', 'python-dotenv', 'xevan_hash', 'deeponion-x13-hash'],
+                      'quark_hash', 'python-dotenv', 'xevan_hash', 
+                      'deeponion-x13-hash'],
     extras_require={
         'rapidjson': ['python-rapidjson>=0.4.1,<2.0'],
         'rocksdb': ['python-rocksdb>=0.6.9'],
