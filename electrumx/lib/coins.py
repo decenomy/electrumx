@@ -4058,4 +4058,21 @@ class CryptoFlow(Sapphire, Coin):
     WIF_BYTE = bytes.fromhex("66")
     RPC_PORT = 13334
 
+class DashDiamond(Sapphire, Coin):
+    NAME = "DashDiamond"
+    SHORTNAME = "DASHD"
+    XPUB_VERBYTES = bytes.fromhex("022D2573")
+    XPRV_VERBYTES = bytes.fromhex("0221312B")
+    GENESIS_HASH = '00000e474f09929213ecad858b8c24002f8146cb459b98e5f665c27eea85f279'
+    P2PKH_VERBYTE = bytes.fromhex("1e")
+    P2SH_VERBYTE = bytes.fromhex("53")
+    WIF_BYTE = bytes.fromhex("7d")
+    RPC_PORT = 23452
 
+    @classmethod
+    def header_hash(cls, header):
+        version, = struct.unpack('<I', header[:4])
+        if version >= cls.DSHA256_BLOCK_VERSION:
+            return super().header_hash(header)
+        else:
+            return xevan_hash.getPoWHash(header)
