@@ -4076,3 +4076,51 @@ class DashDiamond(Sapphire, Coin):
             return super().header_hash(header)
         else:
             return xevan_hash.getPoWHash(header)
+
+# class UltraClear(Sapphire, Coin):
+#     NAME = "UltraClear"
+#     SHORTNAME = "UCR"
+#     XPUB_VERBYTES = bytes.fromhex("022D2533")
+#     XPRV_VERBYTES = bytes.fromhex("0221312B")
+#     GENESIS_HASH = '0000086d20056b2feb29fb638fe1086ac017b481bf52f0cc1cca297385a91f44'
+#     P2PKH_VERBYTE = bytes.fromhex("1c")
+#     P2SH_VERBYTE = bytes.fromhex("1f")
+#     WIF_BYTE = bytes.fromhex("86")
+#     RPC_PORT = 32627
+
+#     @classmethod
+#     def header_hash(cls, header):
+#         version, = struct.unpack('<I', header[:4])
+#         print("ver=", version)
+
+#         version1, prev_block_hash, merkle_root, timestamp, bits,nonce = cls.HEADER_UNPACK(header)
+        
+#         print("header=", version1, hash_to_hex_str(prev_block_hash), hash_to_hex_str(merkle_root), timestamp, bits,nonce)
+
+#         nor_hash = ""
+#         if version >= cls.DSHA256_BLOCK_VERSION:
+#             print("super.hash")
+#             nor_hash = super().header_hash(header)
+#         else:
+#             import deeponion_x13_hash
+#             print("x13.hash")
+#             nor_hash = deeponion_x13_hash.getPoWHash(header)
+        
+#         if( "26d2d334c3f19e8bfe75e0970528d39e8907f6df5b8ea7eb36b58a89cc8edac2" == hash_to_hex_str(merkle_root)):
+#             print("yakaldikmi")
+#             nor_hash = hex_str_to_hash("00000332b46d900809cc2d3ec746c3abd7d6aa18b94baa504807facf5bb305eb")
+
+#         print(" hash : ", hash_to_hex_str(nor_hash))
+
+#         return nor_hash
+
+class Suvereno(Sapphire, Coin):
+    NAME = "Suvereno"
+    SHORTNAME = "SUV"
+    XPUB_VERBYTES = bytes.fromhex("022D2533")
+    XPRV_VERBYTES = bytes.fromhex("0221312B")
+    GENESIS_HASH = '000007cabcfba44b7a728f1746bdec842c9fefab32e8e9df3e18d28ecc265eb3'
+    P2PKH_VERBYTE = bytes.fromhex("3f")
+    P2SH_VERBYTE = bytes.fromhex("0d")
+    WIF_BYTE = bytes.fromhex("d4")
+    RPC_PORT = 18977
