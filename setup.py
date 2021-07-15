@@ -1,4 +1,5 @@
 import setuptools
+from distutils.core import Extension
 version = '1.16.0'
 
 setuptools.setup(
@@ -44,4 +45,24 @@ setuptools.setup(
         "Topic :: Database",
         'Topic :: Internet',
     ],
+    ext_modules=[Extension("x11kvs", 
+                               sources = ['x11kvs/algo/groestl/sph_groestl.c',
+                                          'x11kvs/algo/blake/sph_blake.c',
+                                          'x11kvs/algo/keccak/sph_keccak.c',
+                                          'x11kvs/algo/jh/sph_jh.c',
+                                          'x11kvs/algo/bmw/sph_bmw.c',
+                                          'x11kvs/algo/cubehash/cubehash_sse2.c',
+                                          'x11kvs/algo/shavite/sph_shavite.c',
+                                          'x11kvs/algo/simd/nist.c',
+                                          'x11kvs/algo/simd/vector.c',
+                                          'x11kvs/algo/luffa/luffa_for_sse2.c',
+                                          'x11kvs/algo/skein/sph_skein.c',
+                                          'x11kvs/algo/echo/sph_echo.c',
+                                          'x11kvs/algo/sha/sha2.c',
+                                          'x11kvs/algo/x11/x11kvs.c',
+                                          'x11kvs/x11kvsModule.c'
+                                          ],
+
+                               include_dirs=['x11kvs', 'x11kvs/simd-utils', '/usr/include/openssl'
+                                            ])]
 )
