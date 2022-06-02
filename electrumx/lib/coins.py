@@ -4128,3 +4128,14 @@ class Suvereno(Sapphire, Coin):
     P2SH_VERBYTE = bytes.fromhex("0d")
     WIF_BYTE = bytes.fromhex("d4")
     RPC_PORT = 18977
+
+class Birake(Sapphire, Coin):
+    NAME = "Birake"
+    SHORTNAME = "BIR"
+    XPUB_VERBYTES = bytes.fromhex("022D2533")
+    XPRV_VERBYTES = bytes.fromhex("0221312B")
+    GENESIS_HASH = '00000c89a16d5d75011aed4ed5e21efc7bf3ffebe7411f46632771c0ceb907c3'
+    P2PKH_VERBYTE = bytes.fromhex("2d")
+    P2SH_VERBYTE = bytes.fromhex("0d")
+    WIF_BYTE = bytes.fromhex("b3")
+    RPC_PORT = 39698
