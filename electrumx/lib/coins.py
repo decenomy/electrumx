@@ -4139,3 +4139,33 @@ class Birake(Sapphire, Coin):
     P2SH_VERBYTE = bytes.fromhex("0d")
     WIF_BYTE = bytes.fromhex("b3")
     RPC_PORT = 39698
+
+#class PEPSCoin(Sapphire, Coin):
+#    NAME = "PEPSCoin"
+#    SHORTNAME = "PEPS"
+#    XPUB_VERBYTES = bytes.fromhex("042E2171")
+#    XPRV_VERBYTES = bytes.fromhex("0825392F")
+#    GENESIS_HASH = '000002be4a05e7ce86e568cd6d106daca9d80bdeaa6564701efc2cd25a5bd86e'
+#    P2PKH_VERBYTE = bytes.fromhex("37")
+#    P2SH_VERBYTE = bytes.fromhex("5c")
+#    WIF_BYTE = bytes.fromhex("75")
+#    RPC_PORT = 16262
+#
+#    @classmethod
+#    def header_hash(cls, header):
+#        version, = struct.unpack('<I', header[:4])
+#        if version >= cls.DSHA256_BLOCK_VERSION:
+#            return super().header_hash(header)
+#        else:
+#            return xevan_hash.getPoWHash(header)
+
+class ModernInvestmentCoin(Sapphire, Coin):
+    NAME = "ModernInvestmentCoin"
+    SHORTNAME = "MODIC"
+    XPUB_VERBYTES = bytes.fromhex("022D2533")
+    XPRV_VERBYTES = bytes.fromhex("0221312B")
+    GENESIS_HASH = '000004cd0b7e3f050671ae041632a1a7c9578b3ef55da7d08da9695f7ea44e0a'
+    P2PKH_VERBYTE = bytes.fromhex("33")
+    P2SH_VERBYTE = bytes.fromhex("0d")
+    WIF_BYTE = bytes.fromhex("d4")
+    RPC_PORT = 8821
