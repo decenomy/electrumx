@@ -4169,3 +4169,14 @@ class ModernInvestmentCoin(Sapphire, Coin):
     P2SH_VERBYTE = bytes.fromhex("0d")
     WIF_BYTE = bytes.fromhex("d4")
     RPC_PORT = 8821
+
+class OneWorld(Sapphire, Coin):
+    NAME = "OneWorld"
+    SHORTNAME = "OWO"
+    XPUB_VERBYTES = bytes.fromhex("022D2533")
+    XPRV_VERBYTES = bytes.fromhex("0221312B")
+    GENESIS_HASH = '00000e7b446b97413bfec60b4d733b3765dcc2bbbb63fd655e507390e4c4632c'
+    P2PKH_VERBYTE = bytes.fromhex("73")
+    P2SH_VERBYTE = bytes.fromhex("70")
+    WIF_BYTE = bytes.fromhex("5c")
+    RPC_PORT = 32113
