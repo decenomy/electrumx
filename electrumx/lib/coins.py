@@ -4180,3 +4180,14 @@ class OneWorld(Sapphire, Coin):
     P2SH_VERBYTE = bytes.fromhex("70")
     WIF_BYTE = bytes.fromhex("5c")
     RPC_PORT = 32113
+
+class PowerBalt(Sapphire, Coin):
+    NAME = "PowerBalt"
+    SHORTNAME = "PWRB"
+    XPUB_VERBYTES = bytes.fromhex("022D2533")
+    XPRV_VERBYTES = bytes.fromhex("0221312B")
+    GENESIS_HASH = '000001240cc694469fa1944f31e3e1de71799ae415cff0dfdf4e7229896b37eb'
+    P2PKH_VERBYTE = bytes.fromhex("37")
+    P2SH_VERBYTE = bytes.fromhex("49")
+    WIF_BYTE = bytes.fromhex("3c")
+    RPC_PORT = 12301
